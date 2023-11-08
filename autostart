@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+# variables
+config=$HOME/.config/hypr
+scripts=$config/scripts
+
+# notification daemon
+dunst &
+
+# waybar
+waybar -s '/home/anonymous/.config/waybar/style.css' &
+$scripts/tools/dynamic &
+
+# wallpaper
+swww init &
+$HOME/.scripts/wallpaper_random &
+
+# $scripts/wall 
+
+# effects
+$scripts/rgb &
+
+# other
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+python ./Coding/Python/batterywarn.py &
